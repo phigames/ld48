@@ -7,6 +7,9 @@ from django.views.decorators.http import require_GET, require_POST
 
 from ld48 import models
 
+N_RATE = 6
+N_RATE_BEST = 3
+
 
 def count_lines():
     with open("alternatives.jsonl") as f:
@@ -29,9 +32,17 @@ def load_quote():
 @require_GET
 def quote(request):
     quote = ["load", "shit"]
-    context = {
-        "quote": quote,
-    }
+    finalquote = [
+        {
+            "word": "Hello",
+            "alternatives": [
+                "Hi",
+                "salü",
+            ],
+        },
+        {"word": "this", "alternatives": ["that", "Andreas"]},
+    ]
+    context = {"quote": finalquote}
     return render(request, "ld48/quote.html", context)
 
 
@@ -39,6 +50,22 @@ def quote(request):
 def post(request):
     data = json.loads(request.body)
     return JsonResponse({"success": True})
+
+
+@require_GET
+def rate(request, username):
+    models.Post.objects.exclude(username=username).order_by("?")[:N_RATE]
+    context = {
+        "posts": [
+            {
+                "text": f"example post {i}",
+                "username": f"User {i}",
+            }
+            for i in range(N_RATE)
+        ],
+        "n_rate_best": N_RATE_BEST,
+    }
+    return render(request, "ld48/rate.html", context)
 
 
 @require_POST
