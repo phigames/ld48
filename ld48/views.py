@@ -1,10 +1,29 @@
 import json
+import random
 
 from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_GET, require_POST
 
 from ld48 import models
+
+
+def count_lines():
+    with open("quotes.jsonl") as f:
+        for i, l in enumerate(f):
+            pass
+    return i
+
+
+LINE_COUNT = count_lines()
+
+
+def load_quote():
+    with open("quotes.jsonl") as f:
+        i = random.randint(0, LINE_COUNT)
+        for n, line in enumerate(f):
+            if i == n:
+                return json.loads(line)
 
 
 @require_GET
