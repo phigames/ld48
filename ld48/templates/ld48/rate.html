@@ -1,4 +1,12 @@
-{% for post in posts %}
-    <p>{{ post.text }}</p>
-    <p>{{ post.username }}</p>
-{% endfor %}
+{% extends "ld48/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container p-3 m-3 border">
+    {% for post in posts %}
+        <p>{{ post.text }}</p>
+        <p>{{ post.username }}</p>
+    {% endfor %}
+</div>
+
+{% endblock content %}
