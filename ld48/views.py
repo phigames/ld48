@@ -9,9 +9,6 @@ from django.views.decorators.http import require_http_methods
 
 from ld48 import models
 
-N_RATE = 6
-N_RATE_BEST = 3
-
 
 def max_line_index():
     with open("data/alternatives.jsonl") as f:
@@ -66,22 +63,19 @@ def ratings(request: HttpRequest):
     if request.method == "GET":
         username = request.GET.get("username")
         posts = list(
-            models.Post.objects.exclude(username=username).order_by("n_ratings")[
-                : N_RATE * 2
-            ]
+            models.Post.objects.exclude(username=username).order_by("n_ratings")[:8]
         )
         random.shuffle(posts)
-        posts = posts[:N_RATE]
+        posts = posts[:4]
         context = {
             "posts": [
                 {
-                    "id": uuid.uuid4(),
-                    "text": f"example post {i}",
-                    "username": f"User {i}",
+                    "id": post.id,
+                    "text": post.text,
+                    "username": post.username,
                 }
-                for i in range(N_RATE)
+                for post in posts
             ],
-            "n_rate_best": N_RATE_BEST,
         }
         return render(request, "ld48/ratings.html", context)
 
