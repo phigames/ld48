@@ -1,6 +1,7 @@
 import json
 
 from django.http.response import JsonResponse
+from django.shortcuts import render
 from django.views.decorators.http import require_GET, require_POST
 
 from ld48 import models
@@ -8,7 +9,11 @@ from ld48 import models
 
 @require_GET
 def quote(request):
-    return JsonResponse({"data": "quote"})
+    quote = ["load", "shit"]
+    context = {
+        "quote": quote,
+    }
+    return render(request, "ld48/quote.html", context)
 
 
 @require_POST
