@@ -1,10 +1,10 @@
 import json
 import random
-import uuid
 
 from django.http.request import HttpRequest
 from django.http.response import JsonResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.http import require_http_methods
 
 from ld48 import models
@@ -29,11 +29,13 @@ def load_quote():
 
 
 @require_http_methods(["GET"])
+@ensure_csrf_cookie
 def home(request: HttpRequest):
     return render(request, "ld48/home.html")
 
 
 @require_http_methods(["GET", "POST"])
+@ensure_csrf_cookie
 def quote(request: HttpRequest):
     if request.method == "GET":
         quote = load_quote()
@@ -56,6 +58,7 @@ def quote(request: HttpRequest):
 
 
 @require_http_methods(["GET", "POST"])
+@ensure_csrf_cookie
 def ratings(request: HttpRequest):
     if request.method == "GET":
         username = request.GET.get("username")
@@ -81,6 +84,7 @@ def ratings(request: HttpRequest):
 
 
 @require_http_methods(["GET"])
+@ensure_csrf_cookie
 def posts(request: HttpRequest, username: str):
     posts = models.Post.objects.filter(username=username)
     context = {
