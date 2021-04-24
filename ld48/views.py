@@ -21,7 +21,7 @@ MAX_LINE_INDEX = max_line_index()
 
 
 def load_quote():
-    with open("alternatives.jsonl") as f:
+    with open("data/alternatives.jsonl") as f:
         i = random.randint(0, MAX_LINE_INDEX)
         for n, line in enumerate(f):
             if i == n:
@@ -36,23 +36,20 @@ def home(request: HttpRequest):
 @require_http_methods(["GET", "POST"])
 def quote(request: HttpRequest):
     if request.method == "GET":
-        finalquote = [
-            {
-                "word": "Hello",
-                "alternatives": [
-                    "Hi",
-                    "salü",
-                ],
-            },
-            {"word": "this", "alternatives": ["that", "Andreas"]},
-        ]
-        context = {"quote": finalquote}
+        quote = load_quote()
+        context = {"quote": quote}
         return render(request, "ld48/quote.html", context)
 
     elif request.method == "POST":
         data = json.loads(request.body)
+        words = data.get("words")
+        text = ""
+        for i, word in enumerate(words):
+            if i > 0 and word.isalnum():
+                text += " "
+            text += word
         models.Post.objects.create(
-            text=data.get("text"),
+            text=text,
             username=data.get("username"),
         )
         return JsonResponse({"success": True})

@@ -1,7 +1,7 @@
-const starRatings = $("input.star-rating");
+const starRatings = $(".star-rating");
 
-for (const starRatingInput of starRatings) {
-  const id = starRatingInput.dataset.ratingId;
+for (const starRating of starRatings) {
+  const id = starRating.dataset.ratingId;
   $(`.rating-star[data-rating-id='${id}']`).on("click", function (event) {
     const value = event.target.dataset.ratingStarValue;
     axios

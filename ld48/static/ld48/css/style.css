@@ -1,0 +1,7 @@
+.word-alternative-select {
+    padding: 0;
+}
+
+.word-alternative-select::after {
+    display: none;
+}

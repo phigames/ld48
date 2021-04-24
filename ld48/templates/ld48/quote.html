@@ -1,22 +1,33 @@
 {% extends "ld48/base.html" %}
-{% load static %}
-{% block content %}
-    <div class="container p-3 m-3 border">
-        <!-- <div class="container p-3 mx-3 border text-center">
-            <img class="img-fluid rounded" src= "{% static 'ld48/testinspiration.jpg' %}">
-        </div>
-        -->
-        
 
-        {% for token in quote %}
-            <div class="dropdown d-inline">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton-{{forloop.counter}}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{token.word}}</button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-{{forloop.counter}}">
-                    {% for alt in token.alternatives %}
-                    <a class="dropdown-item" href="#">{{ alt }}</a>
-                    {% endfor %}
-                </div>
+{% load static %}
+
+{% block content %}
+
+<div class="container p-3 m-3 border">
+<!-- <div class="container p-3 mx-3 border text-center">
+    <img class="img-fluid rounded" src= "{% static 'ld48/testinspiration.jpg' %}">
+</div> -->
+
+    {% for token in quote %}
+        <div class="dropdown d-inline">
+            <button id="token-{{ forloop.counter0 }}" class="btn dropdown-toggle word-alternative-select" type="button" data-bs-toggle="dropdown">{{ token.word }}</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#" onclick="selectWord({{ forloop.counter0 }}, '{{ token.word|escapejs }}')">{{ token.word }}</a>
+                {% for alt in token.alternatives %}
+                    <a class="dropdown-item" href="#" onclick="selectWord({{ forloop.parentloop.counter0 }}, '{{ alt|escapejs }}')">{{ alt }}</a>
+                {% endfor %}
             </div>
-        {% endfor %}
+        </div>
+    {% endfor %}
+    <div class="mt-2">
+        <button type="submit" class="btn btn-primary" onclick="submit()">Submit</button>
+        <button type="button" class="btn btn-secondary" onclick="location.reload()"><i class="bi bi-arrow-repeat me-2"></i>Regenerate</button>
     </div>
+</div>
+
 {% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'ld48/js/quote.js' %}"></script>
+{% endblock scripts %}
