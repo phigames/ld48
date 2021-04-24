@@ -10,9 +10,17 @@ from ld48 import models
 @require_GET
 def quote(request):
     quote = ["load", "shit"]
-    context = {
-        "quote": quote,
-    }
+    finalquote = [
+        {
+            "word": "Hello",
+            "alternatives": [
+                "Hi",
+                "salü",
+            ],
+        },
+        {"word": "this", "alternatives": ["that", "Andreas"]},
+    ]
+    context = {"quote": finalquote}
     return render(request, "ld48/quote.html", context)
 
 

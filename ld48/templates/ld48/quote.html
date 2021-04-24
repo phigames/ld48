@@ -1,3 +1,22 @@
-{% for word in quote %}
-    {{word}}
-{% endfor %}
+{% extends "ld48/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container p-3 m-3 border">
+        <!-- <div class="container p-3 mx-3 border text-center">
+            <img class="img-fluid rounded" src= "{% static 'ld48/testinspiration.jpg' %}">
+        </div>
+        -->
+        
+
+        {% for token in quote %}
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton-{{forloop.counter}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{token.word}}</button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-{{forloop.counter}}">
+                    {% for alt in token.alternatives %}
+                    <a class="dropdown-item" href="#">{{ alt }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
