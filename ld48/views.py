@@ -73,8 +73,7 @@ def ratings(request: HttpRequest):
         return render(request, "ld48/rate.html", context)
 
     elif request.method == "POST":
-        for post_id in request.GET:
+        for post_id, rating in request.GET.items():
             post = models.Post.objects.get(post_id)
-            post.add_rating()
-            post.save()
+            post.add_rating(rating)
         return JsonResponse({"success": True})

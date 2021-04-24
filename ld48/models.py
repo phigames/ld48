@@ -11,8 +11,12 @@ class Post(models.Model):
     username = models.CharField(max_length=30)
 
     def add_rating(self, rating: float):
-        ratings_sum = self.average_rating * self.n_ratings
-        ratings_sum += rating
-        self.n_ratings += 1
-        self.average_rating = ratings_sum / self.n_ratings
+        if self.average_rating is None:
+            self.average_rating = rating
+            self.n_ratings = 1
+        else:
+            ratings_sum = self.average_rating * self.n_ratings
+            ratings_sum += rating
+            self.n_ratings += 1
+            self.average_rating = ratings_sum / self.n_ratings
         self.save()
