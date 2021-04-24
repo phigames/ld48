@@ -10,7 +10,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "unsafe-secret-key-for-development")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DJANGO_DEBUG", "true").lower() in ["true", "yes"]
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["phigames-ld48.herokuapp.com"]
 
 
 # Application definition
