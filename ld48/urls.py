@@ -5,8 +5,9 @@ from ld48 import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("quote/", views.quote),
-    path("ratings/", views.ratings),
-    path("posts/<username>/", views.posts),
-    path("leaderboard/", views.leaderboard),
+    path("", views.home, name="home"),
+    path("quote/", views.quote, name="quote"),
+    path("ratings/", views.ratings, name="ratings"),
+    path("posts/<username>/", views.posts, name="posts"),
+    path("leaderboard/", views.leaderboard, name="leaderboard"),
 ]

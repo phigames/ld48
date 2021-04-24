@@ -9,8 +9,8 @@
         
 
         {% for token in quote %}
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton-{{forloop.counter}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{token.word}}</button>
+            <div class="dropdown d-inline">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton-{{forloop.counter}}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{token.word}}</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-{{forloop.counter}}">
                     {% for alt in token.alternatives %}
                     <a class="dropdown-item" href="#">{{ alt }}</a>

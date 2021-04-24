@@ -31,6 +31,11 @@ def load_quote():
                 return json.loads(line)
 
 
+@require_http_methods(["GET"])
+def home(request: HttpRequest):
+    return render(request, "ld48/home.html")
+
+
 @require_http_methods(["GET", "POST"])
 def quote(request: HttpRequest):
     if request.method == "GET":
@@ -60,9 +65,13 @@ def quote(request: HttpRequest):
 def ratings(request: HttpRequest):
     if request.method == "GET":
         username = request.GET.get("username")
-        models.Post.objects.exclude(username=username).order_by("n_ratings")[
-            :N_RATE
-        ].order_by("?")
+        posts = list(
+            models.Post.objects.exclude(username=username).order_by("n_ratings")[
+                : N_RATE * 2
+            ]
+        )
+        random.shuffle(posts)
+        posts = posts[:N_RATE]
         context = {
             "posts": [
                 {
@@ -74,7 +83,7 @@ def ratings(request: HttpRequest):
             ],
             "n_rate_best": N_RATE_BEST,
         }
-        return render(request, "ld48/rate.html", context)
+        return render(request, "ld48/ratings.html", context)
 
     elif request.method == "POST":
         for post_id, rating in request.GET.items():
