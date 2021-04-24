@@ -1,9 +1,10 @@
 import json
 import random
 
+from django.http.request import HttpRequest
 from django.http.response import JsonResponse
 from django.shortcuts import render
-from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.http import require_http_methods
 
 from ld48 import models
 
@@ -29,48 +30,51 @@ def load_quote():
                 return json.loads(line)
 
 
-@require_GET
-def quote(request):
-    quote = ["load", "shit"]
-    finalquote = [
-        {
-            "word": "Hello",
-            "alternatives": [
-                "Hi",
-                "salü",
-            ],
-        },
-        {"word": "this", "alternatives": ["that", "Andreas"]},
-    ]
-    context = {"quote": finalquote}
-    return render(request, "ld48/quote.html", context)
-
-
-@require_POST
-def post(request):
-    data = json.loads(request.body)
-    return JsonResponse({"success": True})
-
-
-@require_GET
-def rate(request, username):
-    models.Post.objects.exclude(username=username).order_by("?")[:N_RATE]
-    context = {
-        "posts": [
+@require_http_methods(["GET", "POST"])
+def quote(request: HttpRequest):
+    if request.method == "GET":
+        finalquote = [
             {
-                "text": f"example post {i}",
-                "username": f"User {i}",
-            }
-            for i in range(N_RATE)
-        ],
-        "n_rate_best": N_RATE_BEST,
-    }
-    return render(request, "ld48/rate.html", context)
+                "word": "Hello",
+                "alternatives": [
+                    "Hi",
+                    "salü",
+                ],
+            },
+            {"word": "this", "alternatives": ["that", "Andreas"]},
+        ]
+        context = {"quote": finalquote}
+        return render(request, "ld48/quote.html", context)
+
+    elif request.method == "POST":
+        data = json.loads(request.body)
+        models.Post.objects.create(
+            text=data.get("text"),
+            username=data.get("username"),
+        )
+        return JsonResponse({"success": True})
 
 
-@require_POST
-def upvote(request, post_id):
-    post = models.Post.objects.get(post_id)
-    post.upvotes += 1
-    post.save()
-    return JsonResponse({"success": True})
+@require_http_methods(["GET", "POST"])
+def ratings(request: HttpRequest):
+    if request.method == "GET":
+        username = request.GET.get("username")
+        models.Post.objects.exclude(username=username).order_by("?")[:N_RATE]
+        context = {
+            "posts": [
+                {
+                    "text": f"example post {i}",
+                    "username": f"User {i}",
+                }
+                for i in range(N_RATE)
+            ],
+            "n_rate_best": N_RATE_BEST,
+        }
+        return render(request, "ld48/rate.html", context)
+
+    elif request.method == "POST":
+        for post_id in request.GET:
+            post = models.Post.objects.get(post_id)
+            post.add_rating()
+            post.save()
+        return JsonResponse({"success": True})
