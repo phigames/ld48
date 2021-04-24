@@ -4,6 +4,7 @@
 
 <div class="container p-3 m-3 border">
     {% for post in posts %}
+        <p>{{ post.id }}</p>
         <p>{{ post.text }}</p>
         <p>{{ post.username }}</p>
     {% endfor %}

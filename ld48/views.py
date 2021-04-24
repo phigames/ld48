@@ -1,5 +1,6 @@
 import json
 import random
+import uuid
 
 from django.http.request import HttpRequest
 from django.http.response import JsonResponse
@@ -59,10 +60,13 @@ def quote(request: HttpRequest):
 def ratings(request: HttpRequest):
     if request.method == "GET":
         username = request.GET.get("username")
-        models.Post.objects.exclude(username=username).order_by("?")[:N_RATE]
+        models.Post.objects.exclude(username=username).order_by("n_ratings")[
+            :N_RATE
+        ].order_by("?")
         context = {
             "posts": [
                 {
+                    "id": uuid.uuid4(),
                     "text": f"example post {i}",
                     "username": f"User {i}",
                 }
@@ -77,3 +81,38 @@ def ratings(request: HttpRequest):
             post = models.Post.objects.get(post_id)
             post.add_rating(rating)
         return JsonResponse({"success": True})
+
+
+@require_http_methods(["GET"])
+def posts(request: HttpRequest, username: str):
+    posts = models.Post.objects.filter(username=username)
+    context = {
+        "posts": [
+            {
+                "id": post.id,
+                "text": post.text,
+                "average_rating": post.average_rating,
+                "n_ratings": post.n_ratings,
+            }
+            for post in posts
+        ]
+    }
+    return render(request, "ld48/posts.html", context)
+
+
+@require_http_methods(["GET"])
+def leaderboard(request: HttpRequest):
+    posts = models.Post.objects.order_by("-average_rating")
+    context = {
+        "posts": [
+            {
+                "id": post.id,
+                "username": post.username,
+                "text": post.text,
+                "average_rating": post.average_rating,
+                "n_ratings": post.n_ratings,
+            }
+            for post in posts
+        ]
+    }
+    return render(request, "ld48/leaderboard.html", context)

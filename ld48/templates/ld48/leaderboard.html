@@ -1,0 +1,11 @@
+{% extends "ld48/base.html" %}
+
+{% block content %}
+    {% for post in posts %}
+        <p>Rank {{ forloop.counter }}</p>
+        <p>{{ post.id }}</p>
+        <p>{{ post.username }}</p>
+        <p>{{ post.text }}</p>
+        <p>{{ post.average_rating }} ({{ post.n_ratings }} ratings)</p>
+    {% endfor %}
+{% endblock content %}
