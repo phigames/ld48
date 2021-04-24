@@ -3,9 +3,9 @@ repos:
     rev: 20.8b1
     hooks:
       - id: black
-        exclude: ^okra_server/migrations/
+        exclude: ^ld48/migrations/
   - repo: https://github.com/PyCQA/isort
     rev: 5.6.4
     hooks:
       - id: isort
-        exclude: ^okra_server/migrations/
+        exclude: ^ld48/migrations/
