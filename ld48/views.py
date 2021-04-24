@@ -12,19 +12,19 @@ N_RATE = 6
 N_RATE_BEST = 3
 
 
-def count_lines():
+def max_line_index():
     with open("alternatives.jsonl") as f:
         for i, l in enumerate(f):
             pass
     return i
 
 
-LINE_COUNT = count_lines()
+MAX_LINE_INDEX = max_line_index()
 
 
 def load_quote():
     with open("alternatives.jsonl") as f:
-        i = random.randint(0, LINE_COUNT)
+        i = random.randint(0, MAX_LINE_INDEX)
         for n, line in enumerate(f):
             if i == n:
                 return json.loads(line)
