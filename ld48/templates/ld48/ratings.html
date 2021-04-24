@@ -1,13 +1,23 @@
 {% extends "ld48/base.html" %}
+
 {% load static %}
+{% load utils %}
+
 {% block content %}
 
 <div class="container p-3 m-3 border">
-    {% for post in posts %}
-        <p>{{ post.id }}</p>
-        <p>{{ post.text }}</p>
-        <p>{{ post.username }}</p>
-    {% endfor %}
+    <form>
+        {% for post in posts %}
+            <p>{{ post.id }}</p>
+            <p>{{ post.text }}</p>
+            <p>{{ post.username }}</p>
+            {% star_rating post.id %}
+        {% endfor %}
+    </form>
 </div>
 
 {% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'ld48/js/ratings.js' %}"></script>
+{% endblock scripts %}

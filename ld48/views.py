@@ -62,11 +62,7 @@ def quote(request: HttpRequest):
 def ratings(request: HttpRequest):
     if request.method == "GET":
         username = request.GET.get("username")
-        posts = list(
-            models.Post.objects.exclude(username=username).order_by("n_ratings")[:8]
-        )
-        random.shuffle(posts)
-        posts = posts[:4]
+        posts = models.Post.objects.exclude(username=username).order_by("n_ratings")[:8]
         context = {
             "posts": [
                 {
@@ -80,9 +76,10 @@ def ratings(request: HttpRequest):
         return render(request, "ld48/ratings.html", context)
 
     elif request.method == "POST":
-        for post_id, rating in request.GET.items():
-            post = models.Post.objects.get(post_id)
-            post.add_rating(rating)
+        post_id = request.GET.get("id")
+        rating = float(request.GET.get("rating"))
+        post = models.Post.objects.get(id=post_id)
+        post.add_rating(rating)
         return JsonResponse({"success": True})
 
 
