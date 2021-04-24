@@ -14,7 +14,7 @@ N_RATE_BEST = 3
 
 
 def max_line_index():
-    with open("alternatives.jsonl") as f:
+    with open("data/alternatives.jsonl") as f:
         for i, l in enumerate(f):
             pass
     return i
