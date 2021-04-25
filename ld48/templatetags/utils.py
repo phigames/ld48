@@ -14,3 +14,8 @@ def star_rating(id, value):
         "id": id,
         "value": round(float(value)) if value is not None else 0,
     }
+
+
+@register.inclusion_tag("ld48/post.html")
+def show_post(post):
+    return {"post": post}
