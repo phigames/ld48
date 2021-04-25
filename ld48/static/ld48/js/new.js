@@ -8,7 +8,6 @@ function submit() {
     words.push(wordAlternativeSelect.innerText);
   }
   const image = $(`#img_unsplash`).attr("src")
-  console.log(image)
   axios
     .post("/new/", {
       words: words,

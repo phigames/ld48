@@ -8,16 +8,18 @@
     <div class="row gy-3">
         {% for post in posts %}
             {% if forloop.counter == 1 %}
-                <div class="col-12 position-relative text-center">
-                    <i class="bi bi-award" style="font-size: 7rem"></i>
-                    <div class="position-absolute fw-bold" style="left: calc(50% - 5rem); width: 10rem; top: 1.2rem; font-size: 4rem">{{ forloop.counter }}</div>
+                <div class="col-12">
+                    <div class="leaderboard-award">
+                        <i class="bi bi-trophy" style="font-size: 7rem"></i>
+                        <div class="position-absolute fw-bold" style="left: calc(50% - 5rem); width: 10rem; top: 1.1rem; font-size: 4rem">{{ forloop.counter }}</div>
+                    </div>
                     {% show_post post %}
                 </div>
             {% else %}
                 <div class="col-6">
-                    <div class="position-relative text-center">
-                        <i class="bi bi-award" style="font-size: 4rem"></i>
-                        <div class="position-absolute fw-bold" style="left: calc(50% - 5rem); width: 10rem; top: 1.0rem; font-size: 2rem">{{ forloop.counter }}</div>
+                    <div class="leaderboard-award-mini">
+                        <i class="bi bi-trophy" style="font-size: 4rem"></i>
+                        <div class="position-absolute fw-bold" style="left: calc(50% - 5rem); width: 10rem; top: 0.8rem; font-size: 2rem">{{ forloop.counter }}</div>
                     </div>
                     {% show_minipost post %}
                 </div>

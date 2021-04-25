@@ -12,7 +12,6 @@ function register() {
       location.reload();
     })
     .catch(function (error) {
-      console.log(error);
       $("#register-error").text(error.response.data);
     });
 }

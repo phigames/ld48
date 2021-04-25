@@ -81,3 +81,19 @@ img {
   background-color: #fff;
   animation: loader-inner 2s infinite ease-in;
 }
+
+.leaderboard-award {
+  color: rgb(138, 11, 49);
+  position: relative;
+  text-align: center;
+  height: 9.5rem;
+  z-index: 100;
+}
+
+.leaderboard-award-mini {
+  color: rgb(138, 11, 49);
+  position: relative;
+  text-align: center;
+  height: 5.5rem;
+  z-index: 100;
+}

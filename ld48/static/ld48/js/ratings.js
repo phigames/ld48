@@ -21,9 +21,8 @@ for (const starRating of starRatings) {
     }
   }
   $(`.rating-star[data-post-id='${id}']`).on("click", function (event) {
-    console.log('click')
+    event.preventDefault();
     if (!isLoggedIn() || starRating.dataset.postUsername == getUsername()) {
-      console.log('not allowed');
       return;
     }
     const value = event.target.dataset.ratingStarValue;
