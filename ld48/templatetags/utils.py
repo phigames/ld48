@@ -9,11 +9,8 @@ def times(number: int):
 
 
 @register.inclusion_tag("ld48/star_rating.html")
-def star_rating(id, value):
-    return {
-        "id": id,
-        "value": round(float(value)) if value is not None else 0,
-    }
+def star_rating(post):
+    return {"post": post, "editable": True}
 
 
 @register.inclusion_tag("ld48/post.html")

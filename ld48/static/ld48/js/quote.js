@@ -10,7 +10,7 @@ function submit() {
   const image = $(`#img_unsplash`).attr("src")
   console.log(image)
   axios
-    .post("/quote/", {
+    .post("/new/", {
       words: words,
       username: localStorage.getItem("username"),
       image: image,

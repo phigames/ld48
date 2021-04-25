@@ -6,13 +6,12 @@ if (userRatingsJson !== null) {
 }
 
 for (const starRating of starRatings) {
-  const id = starRating.dataset.ratingId;
-  // TODO: check if already rated (in local storage), add user-rated class
+  const id = starRating.dataset.postId;
   if (id in userRatings) {
     starRating.classList.add("user-rated");
     for (let i = 1; i <= 5; i++) {
       const star = $(
-        `.rating-star[data-rating-id='${id}'][data-rating-star-value='${i}']`
+        `.rating-star[data-post-id='${id}'][data-rating-star-value='${i}']`
       );
       if (i <= userRatings[id]) {
         star.removeClass("bi-star").addClass("bi-star-fill");
@@ -21,7 +20,10 @@ for (const starRating of starRatings) {
       }
     }
   }
-  $(`.rating-star[data-rating-id='${id}']`).on("click", function (event) {
+  $(`.rating-star[data-post-id='${id}']`).on("click", function (event) {
+    if (!isLoggedIn() || starRating.dataset.postUsername == getUsername()) {
+      return;
+    }
     const value = event.target.dataset.ratingStarValue;
     let oldValue = null;
     if (id in userRatings) {
@@ -40,7 +42,7 @@ for (const starRating of starRatings) {
       localStorage.setItem("ratings", JSON.stringify(userRatings));
       for (let i = 1; i <= 5; i++) {
         const star = $(
-          `.rating-star[data-rating-id='${id}'][data-rating-star-value='${i}']`
+          `.rating-star[data-post-id='${id}'][data-rating-star-value='${i}']`
         );
         if (i <= value) {
           star.removeClass("bi-star").addClass("bi-star-fill");
