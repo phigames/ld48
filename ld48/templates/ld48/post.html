@@ -11,7 +11,7 @@
     
     <div class="row">
         <div class="col-6 text-start">By {{post.username}}</div>
-        <div class="col-6 text-end"> {% star_rating post.id None %} ({{post.n_ratings}})</div>
+        <div class="col-6 text-end">{% star_rating post.id post.average_rating %} ({{post.n_ratings}})</div>
     </div>
 
 

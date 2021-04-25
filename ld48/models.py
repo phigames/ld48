@@ -10,6 +10,7 @@ class Post(models.Model):
     average_rating = models.FloatField(default=0)
     n_ratings = models.PositiveIntegerField(default=0)
     username = models.CharField(max_length=30)
+    image = models.URLField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

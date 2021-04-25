@@ -7,13 +7,13 @@ function submit() {
   for (const wordAlternativeSelect of $(".word-alternative-select")) {
     words.push(wordAlternativeSelect.innerText);
   }
-  const img = $(`#img_unsplash`).attr("src")
-  console.log(img)
+  const image = $(`#img_unsplash`).attr("src")
+  console.log(image)
   axios
     .post("/quote/", {
       words: words,
       username: localStorage.getItem("username"),
-      img: img,
+      image: image,
     })
     .then(function () {
       window.location.href = "/";
