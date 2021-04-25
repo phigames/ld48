@@ -1,4 +1,5 @@
 import uuid
+from typing import Optional
 
 from django.db import models
 
@@ -12,10 +13,12 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def add_rating(self, rating: float):
+    def add_rating(self, rating: float, old_rating: Optional[float] = None):
         ratings_sum = self.average_rating * self.n_ratings
         ratings_sum += rating
-        self.n_ratings += 1
+        if old_rating is not None:
+            ratings_sum -= old_rating
+        else:
+            self.n_ratings += 1
         self.average_rating = ratings_sum / self.n_ratings
-        self.updated_at = models.DateTimeField(auto_now=True)
         self.save()

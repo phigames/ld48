@@ -73,8 +73,11 @@ def ratings(request: HttpRequest):
     elif request.method == "POST":
         post_id = request.GET.get("id")
         rating = float(request.GET.get("rating"))
+        old = request.GET.get("old")
+        if old is not None:
+            old = float(old)
         post = models.Post.objects.get(id=post_id)
-        post.add_rating(rating)
+        post.add_rating(rating, old_rating=old)
         return JsonResponse({"success": True})
 
 
