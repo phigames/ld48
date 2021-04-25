@@ -13,9 +13,11 @@ a:hover {
 
 .btn-primary {
   background-color: rgb(35, 4, 146);
+  border-color: rgb(35, 4, 146);
 }
 .btn-primary:hover {
   background-color: rgb(138, 11, 49);
+  border-color: rgb(138, 11, 49);
 }
 
 .word-alternative-select {
