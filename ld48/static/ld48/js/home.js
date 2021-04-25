@@ -1,4 +1,4 @@
-if (localStorage.getItem("username") === null) {
+if (!isLoggedIn()) {
   $("#register-container").css("display", "block");
 }
 
