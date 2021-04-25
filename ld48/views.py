@@ -94,19 +94,7 @@ def ratings(request: HttpRequest):
 @ensure_csrf_cookie
 def posts(request: HttpRequest, username: str):
     posts = models.Post.objects.filter(username=username)
-    context = {
-        "posts": [
-            {
-                "id": post.id,
-                "text": post.text,
-                "username": post.username,
-                "image": "https://images.unsplash.com/photo-1619325364907-693737fc268c?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218fHx8fHx8fHwxNjE5MzU2NTIy&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500",
-                "average_rating": post.average_rating,
-                "n_ratings": post.n_ratings,
-            }
-            for post in posts
-        ]
-    }
+    context = {"posts": posts}
     return render(request, "ld48/posts.html", context)
 
 
