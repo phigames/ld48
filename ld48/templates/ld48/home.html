@@ -1,1 +1,27 @@
 {% extends "ld48/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div id="register-container" style="display: none">
+    <h2>Pick a username</h2>
+
+    <p>If you use your ldjam.com username, we will notify you about your ranking after the jam.</p>
+
+    <form class="row g-2">
+        <div class="col-auto">
+            <input id="username-input" type="text" placeholder="Username" class="form-control">
+        </div>
+        <div class="col-auto">
+            <button id="register-button" type="submit" class="btn btn-primary">Register</button>
+        </div>
+    </form>
+    <p id="register-error" style="color: red"></p>
+</div>
+
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'ld48/js/home.js' %}"></script>
+{% endblock scripts %}

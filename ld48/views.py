@@ -2,7 +2,7 @@ import json
 import random
 
 from django.http.request import HttpRequest
-from django.http.response import JsonResponse
+from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.http import require_http_methods
@@ -104,6 +104,7 @@ def posts(request: HttpRequest, username: str):
 
 
 @require_http_methods(["GET"])
+@ensure_csrf_cookie
 def leaderboard(request: HttpRequest):
     posts = models.Post.objects.order_by("-average_rating")
     context = {
@@ -119,3 +120,13 @@ def leaderboard(request: HttpRequest):
         ]
     }
     return render(request, "ld48/leaderboard.html", context)
+
+
+@require_http_methods(["GET"])
+@ensure_csrf_cookie
+def check_username(request: HttpRequest, username: str):
+    posts = models.Post.objects.filter(username=username)
+    if posts.count() > 0:
+        return HttpResponse(None, status=400)
+    else:
+        return HttpResponse(None, status=200)
