@@ -30,7 +30,7 @@ for (const starRating of starRatings) {
         return;
       }
     }
-    let url = `/ratings/?id=${id}&rating=${value}`;
+    let url = `/rate/?id=${id}&rating=${value}`;
     if (oldValue !== null) {
       url += `&old=${oldValue}`;
     }

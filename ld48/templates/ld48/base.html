@@ -19,16 +19,13 @@
                 </a>
                 <ul class="nav nav-pills justify-content-end">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'ratings' %}">Rate quotes</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'leaderboard' %}"><i class="bi bi-award me-2"></i>Leaderboard</a>
                     </li>
                     <li id="register-nav-item" class="nav-item">
                         <a class="btn btn-primary" href="{% url 'home' %}"><i class="bi bi-box-arrow-in-right me-2"></i>Register</a>
                     </li>
                     <li id="new-nav-item" class="nav-item" style="display: none">
-                        <a class="btn btn-primary" href="{% url 'quote' %}"><i class="bi bi-pencil me-2"></i>New inspirational quote</a>
+                        <a class="btn btn-primary" href="{% url 'new' %}"><i class="bi bi-pencil me-2"></i>New inspirational quote</a>
                     </li>
                 </ul>
             </div>
@@ -56,6 +53,7 @@
                 $("#new-nav-item").css("display", "block");
             }
         </script>
+        <script src="{% static 'ld48/js/ratings.js' %}"></script>
         {% block scripts %}{% endblock scripts %}
     </body>
 </html>

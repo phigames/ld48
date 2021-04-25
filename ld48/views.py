@@ -43,11 +43,11 @@ def home(request: HttpRequest):
 
 @require_http_methods(["GET", "POST"])
 @ensure_csrf_cookie
-def quote(request: HttpRequest):
+def new(request: HttpRequest):
     if request.method == "GET":
         quote = load_quote()
         context = {"quote": quote}
-        return render(request, "ld48/quote.html", context)
+        return render(request, "ld48/new.html", context)
 
     elif request.method == "POST":
         data = json.loads(request.body)
@@ -66,28 +66,17 @@ def quote(request: HttpRequest):
         return JsonResponse({"success": True})
 
 
-@require_http_methods(["GET", "POST"])
+@require_http_methods(["POST"])
 @ensure_csrf_cookie
-def ratings(request: HttpRequest):
-    if request.method == "GET":
-        username = request.GET.get("username")
-        posts = models.Post.objects.exclude(username=username).order_by(
-            "n_ratings", "created_at"
-        )[:8]
-        context = {
-            "posts": posts,
-        }
-        return render(request, "ld48/ratings.html", context)
-
-    elif request.method == "POST":
-        post_id = request.GET.get("id")
-        rating = float(request.GET.get("rating"))
-        old = request.GET.get("old")
-        if old is not None:
-            old = float(old)
-        post = models.Post.objects.get(id=post_id)
-        post.add_rating(rating, old_rating=old)
-        return JsonResponse({"success": True})
+def rate(request: HttpRequest):
+    post_id = request.GET.get("id")
+    rating = float(request.GET.get("rating"))
+    old = request.GET.get("old")
+    if old is not None:
+        old = float(old)
+    post = models.Post.objects.get(id=post_id)
+    post.add_rating(rating, old_rating=old)
+    return JsonResponse({"success": True})
 
 
 @require_http_methods(["GET"])
