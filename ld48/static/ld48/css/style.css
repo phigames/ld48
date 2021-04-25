@@ -1,6 +1,7 @@
 body {
   background: rgb(131, 16, 51);
   background: linear-gradient(90deg, rgb(138, 11, 49) 0%, rgb(35, 4, 146) 100%);
+  overflow-y: scroll;
 }
 
 .word-alternative-select {
@@ -8,10 +9,6 @@ body {
 }
 .word-alternative-select::after {
   display: none;
-}
-body {
-  background: rgb(131, 16, 51);
-  background: linear-gradient(90deg, rgb(138, 11, 49) 0%, rgb(35, 4, 146) 100%);
 }
 
 img {
@@ -28,14 +25,8 @@ img {
   transform: translate(-50%, -50%);
 }
 
-.container {
-  position: relative;
-  text-align: center;
-  color: black;
-}
-
 .quote-overlay {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .star-rating.user-rated .rating-star {

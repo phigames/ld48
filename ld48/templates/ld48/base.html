@@ -11,7 +11,7 @@
         <title>deeplr</title>
     </head> 
     <body>
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar sticky-top navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'home' %}">
                     <img src="{% static 'ld48/logo.png' %}" width="30" height="30" class="d-inline-block align-top">
@@ -34,7 +34,7 @@
             </div>
         </nav>
         <div class="container">
-            <div class="col-md-8 offset-md-2 p-3 my-3 bg-light border">
+            <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 p-3 my-3 bg-light border">
                 {% block content %}{% endblock content %}
             </div>
         </div>
@@ -56,9 +56,8 @@
             if (isLoggedIn()) {
                 $("#register-nav-item").css("display", "none");
                 $("#new-nav-item").css("display", "block");
-                const postsURl = $("#posts-link").attr("href") + "posts/" + localStorage.getItem("username")
-                console.log(postsURl)
-                $("#posts-link").attr("href", postsURl)
+                const postsUrl = $("#posts-link").attr("href") + "posts/" + localStorage.getItem("username") + "/"
+                $("#posts-link").attr("href", postsUrl)
                 $("#posts-nav-item").css("display", "block");
             }
 
