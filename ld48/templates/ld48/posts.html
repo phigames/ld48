@@ -1,15 +1,17 @@
 {% extends "ld48/base.html" %}
 {% load utils %}
+{% load static %}
 
 {% block content %}
     {% if posts %}
         {% for post in posts %}
             {% show_post post %}
-            <!-- <p>{{ post.id }}</p>
-            <p>{{ post.text }}</p>
-            <p>{{ post.average_rating }} ({{ post.n_ratings }} ratings)</p> -->
         {% endfor %}
     {% else %}
         <p>There's nothing here yet...</p>
     {% endif %}
 {% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'ld48/js/ratings.js' %}"></script>
+{% endblock scripts %}
