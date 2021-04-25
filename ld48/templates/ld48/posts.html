@@ -4,9 +4,11 @@
 
 {% block content %}
     {% if posts %}
-        {% for post in posts %}
-            {% show_post post %}
-        {% endfor %}
+        <div class="col g-3">
+            {% for post in posts %}
+                {% show_post post %}
+            {% endfor %}
+        </div>
     {% else %}
         <p>There's nothing here yet...</p>
     {% endif %}

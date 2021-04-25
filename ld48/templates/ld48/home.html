@@ -22,10 +22,14 @@
         </div>
     </form>
 </div>
-<div>
-    {% for post in posts %}
-        {% show_post post %}
-    {% endfor %}
+<div class="container p-0">
+    <div class="row gy-3">
+        {% for post in posts %}
+            <div class="col-12">
+                {% show_post post %}
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock content %}
 

@@ -1,68 +1,43 @@
 body {
-    background: rgb(131,16,51);
-    background: linear-gradient(90deg, rgb(138, 11, 49) 0%, rgb(35, 4, 146) 100%);
+  background: rgb(131, 16, 51);
+  background: linear-gradient(90deg, rgb(138, 11, 49) 0%, rgb(35, 4, 146) 100%);
 }
 
 .word-alternative-select {
-    padding: 0;
+  padding: 0;
 }
 .word-alternative-select::after {
-    display: none;
+  display: none;
 }
 body {
-    background: rgb(131,16,51);
-    background: linear-gradient(90deg, rgb(138, 11, 49) 0%, rgb(35, 4, 146) 100%);
+  background: rgb(131, 16, 51);
+  background: linear-gradient(90deg, rgb(138, 11, 49) 0%, rgb(35, 4, 146) 100%);
 }
 
 img {
-    margin: 0 auto;
-    text-align: center;
-    justify-content: center;
-    display: flex;
+  margin: 0 auto;
+  text-align: center;
+  justify-content: center;
+  display: flex;
 }
 
 .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .container {
-    position: relative;
-    text-align: center;
-    color: black;
-  }
+  position: relative;
+  text-align: center;
+  color: black;
+}
 
-  div.transparentbox {
-    padding: 5%;
-    opacity: 0.6;
-    border: 1px solid grey;
-    background-color: #ffffff;
-    border-radius: 10px;
-    filter: alpha(opacity=60); /* This is for IE8 and other earlier browsers */
- }
-
- div.transparentbox p {
-    /* margin: ; */
-    color: #000000;
-    font-weight: bold;
- }
-
- .likes {
-     color: black;
- }
-
- .left-col {
-     float: left;
-     width: 50%;
- }
-
- .right-col {
-     float: right;
-     width: 50%;
- }
+.quote-overlay {
+  background-color: rgba(255, 255, 255, 0.6);
+}
 
 .star-rating.user-rated .rating-star {
-    color: #198754;
+  color: #198754;
 }
