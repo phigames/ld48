@@ -16,3 +16,8 @@ def star_rating(post):
 @register.inclusion_tag("ld48/post.html")
 def show_post(post):
     return {"post": post}
+
+
+@register.inclusion_tag("ld48/minipost.html")
+def show_minipost(post):
+    return {"post": post}

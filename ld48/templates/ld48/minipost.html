@@ -5,17 +5,17 @@
     <div class="card-img-top position-relative">
         <img src="{{ post.image }}" class="card-img-top">
         <div class="card-img-overlay row align-items-center text-center">
-            <div class="col-8 offset-2">
+            <div class="col-12 overflow-hidden" style="max-height: 100%">
                 <div class="card p-3 quote-overlay">
-                    <h5>{{ post.text }}</h5>
+                    <h6>{{ post.text }}</h6>
                 </div>
             </div>
         </div>
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-6 text-start">By <a href="{% url 'posts' post.username %}" class="text-secondary fw-bold text-decoration-none">@{{ post.username }}</a></div>
-            <div class="col-6 text-end">{% star_rating post %} <span class="text-secondary">({{ post.n_ratings }})</span></div>
+            <div class="col-12 text-start">By <a href="{% url 'posts' post.username %}" class="text-secondary fw-bold text-decoration-none">@{{ post.username }}</a></div>
+            <div class="col-12 text-end">{% star_rating post %} <span class="text-secondary">({{ post.n_ratings }})</span></div>
         </div>
     </div>
 </div>
