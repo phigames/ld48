@@ -90,7 +90,7 @@ def posts(request: HttpRequest, username: str):
 @require_http_methods(["GET"])
 @ensure_csrf_cookie
 def leaderboard(request: HttpRequest):
-    posts = models.Post.objects.order_by("-average_rating", "-n_ratings")[:5]
+    posts = models.Post.objects.order_by("-average_rating", "-n_ratings")[:15]
     context = {
         "posts": posts,
     }
