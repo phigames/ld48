@@ -32,3 +32,41 @@ img {
 .star-rating.user-rated .rating-star {
   color: #198754;
 }
+
+
+
+.underline {
+    border-radius: 0%;
+    border-bottom: 1px solid grey;
+  }
+
+.loader {
+display: inline-block;
+width: 30px;
+height: 30px;
+position: relative;
+top: 40%;     
+border: 4px solid #Fff;
+animation: loader 2s infinite ease;
+}
+
+.loader-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #242f3f;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+.loader-inner {
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  background-color: #fff;
+  animation: loader-inner 2s infinite ease-in;
+}
