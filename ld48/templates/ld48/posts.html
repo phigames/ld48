@@ -3,13 +3,17 @@
 {% load static %}
 
 {% block content %}
-    {% if posts %}
-        <div class="col g-3">
+{% if posts %}
+    <div class="container p-0">
+        <div class="row gy-3">
             {% for post in posts %}
-                {% show_post post %}
+                <div class="col-12">
+                    {% show_post post %}
+                </div>
             {% endfor %}
         </div>
-    {% else %}
-        <p>There's nothing here yet...</p>
-    {% endif %}
+    </div>
+{% else %}
+    <p>There's nothing here yet...</p>
+{% endif %}
 {% endblock content %}

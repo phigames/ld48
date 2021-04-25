@@ -3,8 +3,30 @@
 {% load utils %}
 
 {% block content %}
-    {% for post in posts %}
-        <p>Rank {{ forloop.counter }}</p>
-        {% show_post post %}
-    {% endfor %}
+<div class="container p-0">
+    <div class="row gy-3">
+        {% for post in posts %}
+            {% if forloop.counter == 1 %}
+                <div class="col-12 position-relative text-center">
+                    <i class="bi bi-award" style="font-size: 7rem"></i>
+                    <div class="position-absolute fw-bold" style="left: calc(50% - 5rem); width: 10rem; top: 1.2rem; font-size: 4rem">{{ forloop.counter }}</div>
+                    {% show_post post %}
+                </div>
+            {% elif forloop.counter <= 3 %}
+                <div class="col-6">
+                    <div class="position-relative text-center">
+                        <i class="bi bi-award" style="font-size: 4rem"></i>
+                        <div class="position-absolute fw-bold" style="left: calc(50% - 5rem); width: 10rem; top: 1.0rem; font-size: 2rem">{{ forloop.counter }}</div>
+                    </div>
+                    {% show_post post %}
+                </div>
+            {% else %}
+                <div class="col-6">
+                    <h5>Rank {{ forloop.counter }}</h5>
+                    {% show_post post %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
 {% endblock content %}
