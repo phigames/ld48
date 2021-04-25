@@ -1,11 +1,13 @@
 {% extends "ld48/base.html" %}
+{% load utils %}
 
 {% block content %}
     {% if posts %}
         {% for post in posts %}
-            <p>{{ post.id }}</p>
+            {% show_post post %}
+            <!-- <p>{{ post.id }}</p>
             <p>{{ post.text }}</p>
-            <p>{{ post.average_rating }} ({{ post.n_ratings }} ratings)</p>
+            <p>{{ post.average_rating }} ({{ post.n_ratings }} ratings)</p> -->
         {% endfor %}
     {% else %}
         <p>There's nothing here yet...</p>

@@ -1,0 +1,30 @@
+
+{% load static %}
+{% load utils %}
+
+{% block content %}
+
+<div class="container">
+    <div class="col-12">
+        <img src="{{post.image}}" width="100%">
+        <div class="centered transparentbox" >
+            <p>{{post.text}}</p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-6 text-start">By {{post.username}}</div>
+        <div class="col-6 text-end">{{post.average_rating}} ({{post.n_ratings}})</div>
+    </div>
+
+
+    <!-- <div class="rating"></div>
+    <div class="user"></div> -->
+</div>
+
+
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'ld48/js/quote.js' %}"></script>
+{% endblock scripts %}

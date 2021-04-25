@@ -13,3 +13,8 @@ def star_rating(id):
     return {
         "id": id,
     }
+
+
+@register.inclusion_tag("ld48/post.html")
+def show_post(post):
+    return {"post": post}
