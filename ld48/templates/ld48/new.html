@@ -4,26 +4,29 @@
 
 {% block content %}
 
-<div class="container p-3 m-3 border">
+<div class="container">
 <!-- <div class="container p-3 mx-3 border text-center">
     <img class="img-fluid rounded" src= "{% static 'ld48/testinspiration.jpg' %}">
 </div> -->
-
-    {% for token in quote %}
-        <div class="dropdown d-inline">
-            <button id="token-{{ forloop.counter0 }}" class="btn dropdown-toggle word-alternative-select" type="button" data-bs-toggle="dropdown">{{ token.word }}</button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#" onclick="selectWord({{ forloop.counter0 }}, '{{ token.word|escapejs }}')">{{ token.word }}</a>
-                {% for alt in token.alternatives %}
-                    <a class="dropdown-item" href="#" onclick="selectWord({{ forloop.parentloop.counter0 }}, '{{ alt|escapejs }}')">{{ alt }}</a>
-                {% endfor %}
-            </div>
-        </div>
-    {% endfor %}
+    <div class="col-12">
         <img id="img_unsplash" class="img-fluid">
-    <div class="mt-2">
-        <button type="submit" class="btn btn-primary" onclick="submit()">Submit</button>
-        <button type="button" class="btn btn-secondary" onclick="location.reload()"><i class="bi bi-arrow-repeat me-2"></i>Regenerate</button>
+        <div class="centered transparentbox">
+            {% for token in quote %}
+                <div class="dropdown d-inline">
+                    <button id="token-{{ forloop.counter0 }}" class="btn dropdown-toggle word-alternative-select" style="font-weight: bolder; color: black; opacity: 200%;" type="button" data-bs-toggle="dropdown">{{ token.word }}</button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#" onclick="selectWord({{ forloop.counter0 }}, '{{ token.word|escapejs }}')">{{ token.word }}</a>
+                        {% for alt in token.alternatives %}
+                            <a class="dropdown-item" href="#" onclick="selectWord({{ forloop.parentloop.counter0 }}, '{{ alt|escapejs }}')">{{ alt }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="mt-2">
+            <button type="submit" class="btn btn-primary" onclick="submit()">Submit</button>
+            <button type="button" class="btn btn-secondary" onclick="location.reload()"><i class="bi bi-arrow-repeat me-2"></i>Regenerate</button>
+        </div>
     </div>
 </div>
 
@@ -32,3 +35,19 @@
 {% block scripts %}
 <script src="{% static 'ld48/js/new.js' %}"></script>
 {% endblock scripts %}
+
+{% comment %}
+<div class="container">
+    <div class="col-12">
+        <img src="{{post.image}}" width="100%">
+        <div class="centered transparentbox" >
+            <p>{{post.text}}</p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-6 text-start">By<a href="{% url 'posts' post.username %}" style="font-weight: bolder; color: grey; text-decoration: none;"><i class="bi me-2"></i>@{{post.username}}</a></div>
+        <div class="col-6 text-end"> {% star_rating post.id post.average_rating %} ({{post.n_ratings}})</div>
+    </div>
+</div>
+{% endcomment %}
