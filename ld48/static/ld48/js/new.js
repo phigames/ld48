@@ -21,7 +21,7 @@ function submit() {
 
 window.onload = function () {
   axios
-    .get("https://source.unsplash.com/500x500/?fitness")
+    .get("https://source.unsplash.com/500x500/?fitness,space,mountains,nature,inspirational")
     .then((response) => {
       $(`#img_unsplash`).attr("src", response.request.responseURL);
     })
