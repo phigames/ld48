@@ -4,7 +4,7 @@
 
 {% block content %}
 <div id="register-container" class="modal-dialog" style="display: none">
-    <div class="modal-content">
+    <form class="modal-content">
         <div class="modal-header">
             <h4 class="modal-title">Pick a username</h4>
         </div>
@@ -12,14 +12,14 @@
             <div class="form-group">
                 <label for="uname"><b>Username</b></label>
                 <input type="text" placeholder="Enter Username" name="uname" id= "uname" required>
-                <div id="register-error" class="invalid-feedback"></div>
+                <div id="register-error" class="text-danger"></div>
             </div>
             <div>If you use your username from ldjam.com, we will leave you a comment about your ranking after the jam.</div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" value="Register" onclick="register()">Register</button>
+            <button type="submit" class="btn btn-primary" value="Register" onclick="register()">Register</button>
         </div>
-    </div>
+    </form>
 </div>
 {% endblock content %}
 

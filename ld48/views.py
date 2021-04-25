@@ -124,9 +124,12 @@ def leaderboard(request: HttpRequest):
 
 @require_http_methods(["GET"])
 @ensure_csrf_cookie
-def check_username(request: HttpRequest, username: str):
+def check_username(request: HttpRequest):
+    username = request.GET.get("username")
+    if not username:
+        return HttpResponse("Username must not be empty", status=400)
     posts = models.Post.objects.filter(username=username)
     if posts.count() > 0:
-        return HttpResponse(None, status=400)
+        return HttpResponse("Username already taken", status=400)
     else:
-        return HttpResponse(None, status=200)
+        return HttpResponse("", status=200)
