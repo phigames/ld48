@@ -62,7 +62,9 @@ def quote(request: HttpRequest):
 def ratings(request: HttpRequest):
     if request.method == "GET":
         username = request.GET.get("username")
-        posts = models.Post.objects.exclude(username=username).order_by("n_ratings")[:8]
+        posts = models.Post.objects.exclude(username=username).order_by(
+            "n_ratings", "updated_at"
+        )[:8]
         context = {
             "posts": [
                 {
