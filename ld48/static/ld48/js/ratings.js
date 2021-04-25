@@ -8,6 +8,19 @@ if (userRatingsJson !== null) {
 for (const starRating of starRatings) {
   const id = starRating.dataset.ratingId;
   // TODO: check if already rated (in local storage), add user-rated class
+  if (id in userRatings) {
+    starRating.classList.add("user-rated");
+    for (let i = 1; i <= 5; i++) {
+      const star = $(
+        `.rating-star[data-rating-id='${id}'][data-rating-star-value='${i}']`
+      );
+      if (i <= userRatings[id]) {
+        star.removeClass("bi-star").addClass("bi-star-fill");
+      } else {
+        star.removeClass("bi-star-fill").addClass("bi-star");
+      }
+    }
+  }
   $(`.rating-star[data-rating-id='${id}']`).on("click", function (event) {
     const value = event.target.dataset.ratingStarValue;
     let oldValue = null;
@@ -19,7 +32,7 @@ for (const starRating of starRatings) {
     }
     let url = `/ratings/?id=${id}&rating=${value}`;
     if (oldValue !== null) {
-      url += `&old=${oldValue}`
+      url += `&old=${oldValue}`;
     }
     axios.post(url).then(function () {
       starRating.classList.add("user-rated");
