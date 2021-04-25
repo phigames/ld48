@@ -83,15 +83,7 @@ def ratings(request: HttpRequest):
 def posts(request: HttpRequest, username: str):
     posts = models.Post.objects.filter(username=username)
     context = {
-        "posts": [
-            {
-                "id": post.id,
-                "text": post.text,
-                "average_rating": post.average_rating,
-                "n_ratings": post.n_ratings,
-            }
-            for post in posts
-        ]
+        "posts": posts,
     }
     return render(request, "ld48/posts.html", context)
 
@@ -101,16 +93,7 @@ def posts(request: HttpRequest, username: str):
 def leaderboard(request: HttpRequest):
     posts = models.Post.objects.order_by("-average_rating")
     context = {
-        "posts": [
-            {
-                "id": post.id,
-                "username": post.username,
-                "text": post.text,
-                "average_rating": post.average_rating,
-                "n_ratings": post.n_ratings,
-            }
-            for post in posts
-        ]
+        "posts": posts,
     }
     return render(request, "ld48/leaderboard.html", context)
 
