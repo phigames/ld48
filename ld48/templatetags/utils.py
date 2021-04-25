@@ -12,5 +12,5 @@ def times(number: int):
 def star_rating(id, value):
     return {
         "id": id,
-        "value": round(float(value)),
+        "value": round(float(value)) if value is not None else 0,
     }

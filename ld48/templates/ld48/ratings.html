@@ -11,7 +11,7 @@
             <p>{{ post.id }}</p>
             <p>{{ post.text }}</p>
             <p>{{ post.username }}</p>
-            {% star_rating post.id post.average_rating %}
+            {% star_rating post.id None %}
         {% endfor %}
     </form>
 </div>
