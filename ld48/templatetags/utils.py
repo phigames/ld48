@@ -9,8 +9,8 @@ def times(number: int):
 
 
 @register.inclusion_tag("ld48/star_rating.html")
-def star_rating(id, value: float):
+def star_rating(id, value):
     return {
         "id": id,
-        "value": round(value),
+        "value": round(float(value)),
     }

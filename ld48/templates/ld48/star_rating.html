@@ -2,6 +2,6 @@
 
 <div class="star-rating" data-rating-id="{{ id }}">
     {% for i in 5|times %}
-        <a class="bi bi-star{% if value <= i %}-fill{% endif %} rating-star" data-rating-id="{{ id }}" data-rating-star-value="{{ i }}"></a>
+        <a class="bi bi-star{% if i <= value %}-fill{% endif %} rating-star" data-rating-id="{{ id }}" data-rating-star-value="{{ i }}"></a>
     {% endfor %}
 </div>
