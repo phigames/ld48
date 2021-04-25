@@ -10,8 +10,8 @@
     </div>
     
     <div class="row">
-        <div class="col-6 text-start">By {{post.username}}</div>
-        <div class="col-6 text-end">{% star_rating post.id post.average_rating %} ({{post.n_ratings}})</div>
+        <div class="col-6 text-start">By<a href="{% url 'posts' post.username %}" style="font-weight: bolder; color: grey; text-decoration: none;"><i class="bi me-2"></i>@{{post.username}}</a></div>
+        <div class="col-6 text-end"> {% star_rating post.id post.average_rating %} ({{post.n_ratings}})</div>
     </div>
 
 

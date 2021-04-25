@@ -18,6 +18,9 @@
                     Deepr
                 </a>
                 <ul class="nav nav-pills justify-content-end">
+                    <li id="posts-nav-item" class="nav-item" style="display: none">
+                        <a class="nav-link" id="posts-link" href="{% url 'home' %}">My posts</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'leaderboard' %}"><i class="bi bi-award me-2"></i>Leaderboard</a>
                     </li>
@@ -51,7 +54,12 @@
             if (isLoggedIn()) {
                 $("#register-nav-item").css("display", "none");
                 $("#new-nav-item").css("display", "block");
+                const postsURl = $("#posts-link").attr("href") + "posts/" + localStorage.getItem("username")
+                console.log(postsURl)
+                $("#posts-link").attr("href", postsURl)
+                $("#posts-nav-item").css("display", "block");
             }
+
         </script>
         <script src="{% static 'ld48/js/ratings.js' %}"></script>
         {% block scripts %}{% endblock scripts %}
