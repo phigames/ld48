@@ -1,4 +1,5 @@
 if (!isLoggedIn()) {
+  $("#hello-container").css("display", "block");
   $("#register-container").css("display", "block");
 }
 
