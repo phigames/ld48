@@ -1,7 +1,7 @@
 {% load utils %}
 
-<div {% if id %}class="star-rating" data-rating-id="{{ id }}"{% endif %}>
+<div {% if editable %}class="star-rating" data-post-id="{{ post.id }}" data-post-username="{{ post.username }}"{% endif %}>
     {% for i in 5|times %}
-        <a class="bi bi-star{% if i <= value %}-fill{% endif %} rating-star" {% if id %}data-rating-id="{{ id }}" data-rating-star-value="{{ i }}"{% endif %}></a>
+        <a class="bi bi-star{% if i <= post.average_rating %}-fill{% endif %} rating-star" {% if editable %}data-post-id="{{ post.id }}" data-rating-star-value="{{ i }}"{% endif %}></a>
     {% endfor %}
 </div>

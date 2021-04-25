@@ -51,6 +51,10 @@
                 return localStorage.getItem("username") !== null;
             }
 
+            function getUsername() {
+                return localStorage.getItem("username");
+            }
+
             if (isLoggedIn()) {
                 $("#register-nav-item").css("display", "none");
                 $("#new-nav-item").css("display", "block");
