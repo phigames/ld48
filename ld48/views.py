@@ -66,14 +66,7 @@ def ratings(request: HttpRequest):
             "n_ratings", "updated_at"
         )[:8]
         context = {
-            "posts": [
-                {
-                    "id": post.id,
-                    "text": post.text,
-                    "username": post.username,
-                }
-                for post in posts
-            ],
+            "posts": posts,
         }
         return render(request, "ld48/ratings.html", context)
 

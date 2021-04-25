@@ -1,7 +1,11 @@
+body {
+    background: rgb(131,16,51);
+    background: linear-gradient(90deg, rgb(138, 11, 49) 0%, rgb(35, 4, 146) 100%);
+}
+
 .word-alternative-select {
     padding: 0;
 }
-
 .word-alternative-select::after {
     display: none;
 }
@@ -58,3 +62,7 @@ img {
      float: right;
      width: 50%;
  }
+
+.star-rating.user-rated .rating-star {
+    color: #198754;
+}
