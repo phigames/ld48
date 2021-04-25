@@ -1,6 +1,7 @@
 {% extends "ld48/base.html" %}
 
 {% load static %}
+{% load utils %}
 
 {% block content %}
 <div id="register-container" class="modal-dialog" style="display: none">
@@ -20,6 +21,11 @@
             <button type="submit" class="btn btn-primary" value="Register" onclick="register()">Register</button>
         </div>
     </form>
+</div>
+<div>
+    {% for post in posts %}
+        {% show_post post %}
+    {% endfor %}
 </div>
 {% endblock content %}
 

@@ -31,7 +31,14 @@ def load_quote():
 @require_http_methods(["GET"])
 @ensure_csrf_cookie
 def home(request: HttpRequest):
-    return render(request, "ld48/home.html")
+    username = request.GET.get("username")
+    posts = models.Post.objects.exclude(username=username).order_by(
+        "n_ratings", "created_at"
+    )[:8]
+    context = {
+        "posts": posts,
+    }
+    return render(request, "ld48/home.html", context)
 
 
 @require_http_methods(["GET", "POST"])
@@ -45,6 +52,7 @@ def quote(request: HttpRequest):
     elif request.method == "POST":
         data = json.loads(request.body)
         words = data.get("words")
+        image = data.get("image")
         text = ""
         for i, word in enumerate(words):
             if i > 0 and word.isalnum():
@@ -53,6 +61,7 @@ def quote(request: HttpRequest):
         models.Post.objects.create(
             text=text,
             username=data.get("username"),
+            image=image,
         )
         return JsonResponse({"success": True})
 
@@ -63,7 +72,7 @@ def ratings(request: HttpRequest):
     if request.method == "GET":
         username = request.GET.get("username")
         posts = models.Post.objects.exclude(username=username).order_by(
-            "n_ratings", "updated_at"
+            "n_ratings", "created_at"
         )[:8]
         context = {
             "posts": posts,
@@ -73,8 +82,11 @@ def ratings(request: HttpRequest):
     elif request.method == "POST":
         post_id = request.GET.get("id")
         rating = float(request.GET.get("rating"))
+        old = request.GET.get("old")
+        if old is not None:
+            old = float(old)
         post = models.Post.objects.get(id=post_id)
-        post.add_rating(rating)
+        post.add_rating(rating, old_rating=old)
         return JsonResponse({"success": True})
 
 
