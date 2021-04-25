@@ -10,7 +10,7 @@ function submit() {
   axios
     .post("/quote/", {
       words: words,
-      username: "TODO USERNAME",
+      username: localStorage.getItem("username"),
     })
     .then(function () {
       window.location.href = "/";
