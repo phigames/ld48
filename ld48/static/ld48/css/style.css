@@ -36,9 +36,13 @@ a:hover {
   color: rgb(35, 4, 146);
 }
 
-
 .toast {
   background-color: rgb(138, 11, 49);
+}
+
+.footer {
+  text-align: center;
+  color: #fff;
 }
 
 .word-alternative-select {

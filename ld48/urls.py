@@ -11,4 +11,5 @@ urlpatterns = [
     path("posts/<username>/", views.posts, name="posts"),
     path("leaderboard/", views.leaderboard, name="leaderboard"),
     path("check_username/", views.check_username, name="check-username"),
+    path("credits/", views.credits, name="credits"),
 ]

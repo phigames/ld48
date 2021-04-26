@@ -31,7 +31,7 @@ def load_quote():
 @require_http_methods(["GET"])
 @ensure_csrf_cookie
 def home(request: HttpRequest):
-    page_size = 3
+    page_size = 10
     page = int(request.GET.get("page", 1)) - 1
     posts = models.Post.objects.order_by("n_ratings", "-created_at")[
         page * page_size : (page + 1) * page_size
@@ -125,3 +125,9 @@ def check_username(request: HttpRequest):
         return HttpResponse("Username already taken", status=400)
     else:
         return HttpResponse("", status=200)
+
+
+@require_http_methods(["GET"])
+@ensure_csrf_cookie
+def credits(request: HttpRequest):
+    return render(request, "ld48/credits.html")
