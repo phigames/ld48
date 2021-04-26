@@ -67,9 +67,7 @@
                 $("#new-nav-item").css("display", "block");
                 const postsUrl = $("#posts-link").attr("href") + "posts/" + localStorage.getItem("username") + "/"
                 $("#posts-link").attr("href", postsUrl);
-                $("#posts-link").text(`${getUsername()}'s posts`);
                 $("#posts-nav-item").css("display", "block");
-                $("#posts-username").text(getUsername());
             }
 
             const toast = new bootstrap.Toast($("#toast")[0]);

@@ -83,7 +83,7 @@ def rate(request: HttpRequest):
 @ensure_csrf_cookie
 def posts(request: HttpRequest, username: str):
     posts = models.Post.objects.filter(username=username).order_by("-created_at")
-    context = {"posts": posts}
+    context = {"posts": posts, "username": username}
     return render(request, "ld48/posts.html", context)
 
 

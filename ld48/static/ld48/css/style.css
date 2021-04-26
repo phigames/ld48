@@ -20,6 +20,10 @@ a:hover {
   border-color: rgb(138, 11, 49);
 }
 
+.text-primary {
+  color: rgb(35, 4, 146) !important;
+}
+
 .toast {
   background-color: rgb(138, 11, 49);
 }
