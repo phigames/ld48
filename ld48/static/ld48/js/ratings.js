@@ -22,7 +22,12 @@ for (const starRating of starRatings) {
   }
   $(`.rating-star[data-post-id='${id}']`).on("click", function (event) {
     event.preventDefault();
-    if (!isLoggedIn() || starRating.dataset.postUsername == getUsername()) {
+    if (!isLoggedIn()) {
+      showToast('You must be <a href="/" class="text-white">registered<a> to rate posts');
+      return;
+    }
+    if (starRating.dataset.postUsername == getUsername()) {
+      showToast("You cannot rate your own posts");
       return;
     }
     const value = event.target.dataset.ratingStarValue;

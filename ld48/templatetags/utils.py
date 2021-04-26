@@ -17,7 +17,7 @@ def format_timedelta(time: timezone.datetime):
 
 @register.inclusion_tag("ld48/star_rating.html")
 def star_rating(post):
-    return {"post": post, "editable": True}
+    return {"post": post}
 
 
 @register.inclusion_tag("ld48/post.html")

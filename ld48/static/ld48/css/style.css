@@ -20,6 +20,10 @@ a:hover {
   border-color: rgb(138, 11, 49);
 }
 
+.toast {
+  background-color: rgb(138, 11, 49);
+}
+
 .word-alternative-select {
   padding: 0;
 }
