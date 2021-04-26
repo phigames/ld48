@@ -61,6 +61,7 @@
                 $("#posts-link").attr("href", postsUrl);
                 $("#posts-link").text(`${getUsername()}'s posts`);
                 $("#posts-nav-item").css("display", "block");
+                $("#posts-username").text(getUsername());
             }
         </script>
         <script src="{% static 'ld48/js/ratings.js' %}"></script>

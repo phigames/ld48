@@ -33,8 +33,8 @@ def load_quote():
 def home(request: HttpRequest):
     username = request.GET.get("username")
     posts = models.Post.objects.exclude(username=username).order_by(
-        "n_ratings", "created_at"
-    )[:8]
+        "n_ratings", "-created_at"
+    )[:20]
     context = {
         "posts": posts,
     }
@@ -82,7 +82,7 @@ def rate(request: HttpRequest):
 @require_http_methods(["GET"])
 @ensure_csrf_cookie
 def posts(request: HttpRequest, username: str):
-    posts = models.Post.objects.filter(username=username)
+    posts = models.Post.objects.filter(username=username).order_by("-created_at")
     context = {"posts": posts}
     return render(request, "ld48/posts.html", context)
 
