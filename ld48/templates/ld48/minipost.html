@@ -20,7 +20,7 @@
             <div class="col-6 text-end">
                 <span class="text-secondary small">{{ post.created_at|format_timedelta }}</span>
             </div>
-            <div class="col-12 text-center">{% star_rating post %} <span class="text-secondary">({{ post.n_ratings }})</span></div>
+            <div class="col-12 text-center">{% star_rating post %} <span class="d-inline-block text-secondary small">({{ post.n_ratings }} rating{% if post.n_ratings != 1 %}s{% endif %})</span></div>
         </div>
     </div>
 </div>

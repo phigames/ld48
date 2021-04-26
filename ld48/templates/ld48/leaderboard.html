@@ -15,11 +15,19 @@
                     </div>
                     {% show_post post %}
                 </div>
-            {% else %}
+            {% elif forloop.counter <= 3 %}
                 <div class="col-6">
                     <div class="leaderboard-award-mini">
                         <i class="bi bi-trophy" style="font-size: 4rem"></i>
                         <div class="position-absolute fw-bold" style="left: calc(50% - 5rem); width: 10rem; top: 0.8rem; font-size: 2rem">{{ forloop.counter }}</div>
+                    </div>
+                    {% show_minipost post %}
+                </div>
+            {% else %}
+                <div class="col-6">
+                    <div class="leaderboard-noaward">
+                        <i class="bi bi-circle" style="font-size: 2.5rem"></i>
+                        <div class="position-absolute fw-bold" style="left: calc(50% - 5rem); width: 10rem; top: 0.8rem; font-size: 1.5rem">{{ forloop.counter }}</div>
                     </div>
                     {% show_minipost post %}
                 </div>

@@ -99,3 +99,11 @@ img {
   height: 5.5rem;
   z-index: 100;
 }
+
+.leaderboard-noaward {
+  color: rgb(138, 11, 49);
+  position: relative;
+  text-align: center;
+  height: 3.5rem;
+  z-index: 100;
+}
