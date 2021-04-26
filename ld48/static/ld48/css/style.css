@@ -24,6 +24,19 @@ a:hover {
   color: rgb(35, 4, 146) !important;
 }
 
+.page-item.active .page-link {
+  background-color: rgb(35, 4, 146);
+  border-color: rgb(35, 4, 146);
+}
+
+.page-link {
+  color: rgb(35, 4, 146);
+}
+.page-link:hover {
+  color: rgb(35, 4, 146);
+}
+
+
 .toast {
   background-color: rgb(138, 11, 49);
 }

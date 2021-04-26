@@ -31,12 +31,29 @@ def load_quote():
 @require_http_methods(["GET"])
 @ensure_csrf_cookie
 def home(request: HttpRequest):
-    username = request.GET.get("username")
-    posts = models.Post.objects.exclude(username=username).order_by(
-        "n_ratings", "-created_at"
-    )[:20]
+    page_size = 3
+    page = int(request.GET.get("page", 1)) - 1
+    posts = models.Post.objects.order_by("n_ratings", "-created_at")[
+        page * page_size : (page + 1) * page_size
+    ]
+    post_count = models.Post.objects.count()
+    pages = [page]
+    while len(pages) < 5:
+        added = False
+        if pages[0] > 0:
+            pages.insert(0, pages[0] - 1)
+            added = True
+        if pages[-1] < post_count / page_size - 1:
+            pages.append(pages[-1] + 1)
+            added = True
+        if not added:
+            break
     context = {
         "posts": posts,
+        "current_page": page + 1,
+        "previous_page": page if page > 0 else None,
+        "next_page": page + 2 if page < post_count / page_size - 1 else None,
+        "pages": [p + 1 for p in pages],
     }
     return render(request, "ld48/home.html", context)
 
