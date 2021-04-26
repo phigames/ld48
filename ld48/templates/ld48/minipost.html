@@ -14,8 +14,13 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-12 text-start">By <a href="{% url 'posts' post.username %}" class="text-secondary fw-bold text-decoration-none">@{{ post.username }}</a></div>
-            <div class="col-12 text-end">{% star_rating post %} <span class="text-secondary">({{ post.n_ratings }})</span></div>
+            <div class="col-6 text-start">
+                By <a href="{% url 'posts' post.username %}" class="text-secondary fw-bold text-decoration-none">@{{ post.username }}</a>
+            </div>
+            <div class="col-6 text-end">
+                <span class="text-secondary small">{{ post.created_at|format_timedelta }}</span>
+            </div>
+            <div class="col-12 text-center">{% star_rating post %} <span class="text-secondary">({{ post.n_ratings }})</span></div>
         </div>
     </div>
 </div>
